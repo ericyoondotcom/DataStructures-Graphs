@@ -9,7 +9,11 @@ namespace Graphs
 
         public SimpleGraph()
         {
-            
+            vertices = new List<SimpleVertex<T>>();
+        }
+        public SimpleGraph(List<SimpleVertex<T>> vertices)
+        {
+            this.vertices = vertices;
         }
     }
 }
