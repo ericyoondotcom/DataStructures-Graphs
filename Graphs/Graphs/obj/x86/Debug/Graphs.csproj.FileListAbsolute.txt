@@ -1,0 +1,5 @@
+/Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/bin/Debug/Graphs.exe
+/Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/bin/Debug/Graphs.pdb
+/Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/obj/x86/Debug/Graphs.csproj.CoreCompileInputs.cache
+/Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/obj/x86/Debug/Graphs.exe
+/Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/obj/x86/Debug/Graphs.pdb
