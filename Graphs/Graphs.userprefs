@@ -1,22 +1,11 @@
 ﻿<Properties StartupConfiguration="{36EB4DCF-C252-4E0D-B335-9354731E02C1}|Default">
   <MonoDevelop.Ide.ItemProperties.Graphs PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Graphs/SimpleVertex.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Graphs/SimpleGraph.cs">
     <Files>
-      <File FileName="Graphs/Program.cs" Line="9" Column="47" />
-      <File FileName="Graphs/SimpleGraph.cs" Line="1" Column="14" />
-      <File FileName="Graphs/SimpleVertex.cs" Line="8" Column="24" />
+      <File FileName="Graphs/Program.cs" Line="13" Column="13" />
+      <File FileName="Graphs/SimpleGraph.cs" Line="11" Column="10" />
+      <File FileName="Graphs/SimpleVertex.cs" Line="8" Column="28" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Graphs" expanded="True">
-            <Node name="Graphs" expanded="True">
-              <Node name="SimpleVertex.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
