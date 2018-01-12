@@ -50,9 +50,24 @@ namespace Graphs
 
         public bool HasVertex(SimpleVertex<T> vertex) => vertices.Contains(vertex);
 
-        public void DepthFirstTraversal(SimpleVertex<T> root){
-            
+        List<SimpleVertex<T>> visited;
+
+        public List<SimpleVertex<T>> DepthFirstTraversal(SimpleVertex<T> root){
+            visited = new List<SimpleVertex<T>>();
+            DepthFirstTraversalHelper(root);
+            return visited;
         }
+
+		void DepthFirstTraversalHelper(SimpleVertex<T> thisNode)
+		{
+            foreach(SimpleVertex<T> n in thisNode.neighbors){
+                if (visited.Contains(n)) continue;
+                visited.Add(n);
+                DepthFirstTraversalHelper(n);
+
+            }
+
+		}
 
         public void BreadthFirstTraversal(SimpleVertex<T> root){
             

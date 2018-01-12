@@ -142,12 +142,17 @@ namespace Graphs
             myGraph.AddEdge(territories["EU6"], territories["AS11"]);
             #endregion
 
-            Console.WriteLine("Is Alaska Still Here: " + myGraph.HasVertex(territories["NA1"]));
+            /*Console.WriteLine("Is Alaska Still Here: " + myGraph.HasVertex(territories["NA1"]));
 
             //Alaska Runs Away!
             myGraph.RemoveVertex(territories["NA1"]);
 
             Console.WriteLine("Is Alaska Still Here: " + myGraph.HasVertex(territories["NA1"]));
+            */
+            Console.WriteLine("Depth first traversal: ");
+            foreach(SimpleVertex<string> node in myGraph.DepthFirstTraversal(territories["NA9"])){
+                Console.WriteLine(node.val);
+            }
         }
     }
 }

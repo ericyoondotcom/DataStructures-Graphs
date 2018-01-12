@@ -2,14 +2,16 @@
   <MonoDevelop.Ide.ItemProperties.Graphs PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Graphs/SimpleGraph.cs">
     <Files>
-      <File FileName="Graphs/Program.cs" Line="13" Column="13" />
-      <File FileName="Graphs/SimpleGraph.cs" Line="11" Column="10" />
-      <File FileName="Graphs/SimpleVertex.cs" Line="8" Column="28" />
+      <File FileName="Graphs/Program.cs" Line="151" Column="1" />
+      <File FileName="Graphs/SimpleGraph.cs" Line="51" Column="16" />
+      <File FileName="Graphs/SimpleVertex.cs" Line="17" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/Program.cs" relfile="Graphs/Program.cs" line="151" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
