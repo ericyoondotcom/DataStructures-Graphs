@@ -69,8 +69,25 @@ namespace Graphs
 
 		}
 
-        public void BreadthFirstTraversal(SimpleVertex<T> root){
-            
+        Queue<SimpleVertex<T>> q;
+
+        public List<SimpleVertex<T>> BreadthFirstTraversal(SimpleVertex<T> root){
+            visited = new List<SimpleVertex<T>>();
+            q = new Queue<SimpleVertex<T>>();
+
+            q.Enqueue(root);
+            while(q.Count != 0){
+                var n = q.Peek();
+                q.Dequeue();
+                foreach(var i in n.neighbors){
+                    if (!visited.Contains(i)) q.Enqueue(i);
+                }
+                visited.Add(n);
+
+            }
+
+            Console.WriteLine("hi!");
+            return visited;
         }
     }
 }

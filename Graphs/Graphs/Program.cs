@@ -153,6 +153,11 @@ namespace Graphs
             foreach(SimpleVertex<string> node in myGraph.DepthFirstTraversal(territories["NA9"])){
                 Console.WriteLine(node.val);
             }
+
+            Console.WriteLine("Breadth first traversal: ");
+            foreach(SimpleVertex<string> node in myGraph.BreadthFirstTraversal(territories["NA9"])){
+                Console.WriteLine(node.val);
+            }
         }
     }
 }
