@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Graphs
 {
-    public class SimpleGraph<T>
+    public class SimpleGraph<T> where T : IComparable
     {
         public List<SimpleVertex<T>> vertices;
 
@@ -51,19 +51,26 @@ namespace Graphs
         public bool HasVertex(SimpleVertex<T> vertex) => vertices.Contains(vertex);
 
         List<SimpleVertex<T>> visited;
-
-        public List<SimpleVertex<T>> DepthFirstTraversal(SimpleVertex<T> root){
+        SimpleVertex<T> item;
+        public SimpleVertex<T> DepthFirstTraversal(SimpleVertex<T> root, T searchVal){
+            item = null;
             visited = new List<SimpleVertex<T>>();
-            DepthFirstTraversalHelper(root);
-            return visited;
+            DepthFirstTraversalHelper(root, searchVal);
+            return item;
         }
 
-		void DepthFirstTraversalHelper(SimpleVertex<T> thisNode)
+		void DepthFirstTraversalHelper(SimpleVertex<T> thisNode, T searchVal)
 		{
+            if (item != null) return;
             foreach(SimpleVertex<T> n in thisNode.neighbors){
                 if (visited.Contains(n)) continue;
+                if(n.val.CompareTo(searchVal) == 0){
+                    item = n;
+                    return;
+                }
+
                 visited.Add(n);
-                DepthFirstTraversalHelper(n);
+                DepthFirstTraversalHelper(n, searchVal);
 
             }
 
@@ -71,13 +78,17 @@ namespace Graphs
 
         Queue<SimpleVertex<T>> q;
 
-        public List<SimpleVertex<T>> BreadthFirstTraversal(SimpleVertex<T> root){
+        public SimpleVertex<T> BreadthFirstTraversal(SimpleVertex<T> root, T searchVal){
             visited = new List<SimpleVertex<T>>();
             q = new Queue<SimpleVertex<T>>();
 
             q.Enqueue(root);
             while(q.Count != 0){
+
                 var n = q.Peek();
+                if(n.val.CompareTo(searchVal) == 0){
+                    return n;
+                }
                 q.Dequeue();
                 foreach(var i in n.neighbors){
                     if (!visited.Contains(i)) q.Enqueue(i);
@@ -87,7 +98,7 @@ namespace Graphs
             }
 
             Console.WriteLine("hi!");
-            return visited;
+            return null;
         }
     }
 }

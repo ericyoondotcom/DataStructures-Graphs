@@ -150,14 +150,7 @@ namespace Graphs
             Console.WriteLine("Is Alaska Still Here: " + myGraph.HasVertex(territories["NA1"]));
             */
             Console.WriteLine("Depth first traversal: ");
-            foreach(SimpleVertex<string> node in myGraph.DepthFirstTraversal(territories["NA9"])){
-                Console.WriteLine(node.val);
-            }
 
-            Console.WriteLine("Breadth first traversal: ");
-            foreach(SimpleVertex<string> node in myGraph.BreadthFirstTraversal(territories["NA9"])){
-                Console.WriteLine(node.val);
-            }
         }
     }
 }
