@@ -7,6 +7,8 @@ namespace Graphs
     {
         public static void Main(string[] args)
         {
+            /*
+
             Console.WriteLine("Hello World!");
 
             SimpleGraph<string> myGraph = new SimpleGraph<string>();
@@ -140,17 +142,32 @@ namespace Graphs
             myGraph.AddEdge(territories["EU6"], territories["AS7"]);
             myGraph.AddEdge(territories["EU6"], territories["AS1"]);
             myGraph.AddEdge(territories["EU6"], territories["AS11"]);
+
+
             #endregion
-
-            /*Console.WriteLine("Is Alaska Still Here: " + myGraph.HasVertex(territories["NA1"]));
-
-            //Alaska Runs Away!
-            myGraph.RemoveVertex(territories["NA1"]);
-
-            Console.WriteLine("Is Alaska Still Here: " + myGraph.HasVertex(territories["NA1"]));
             */
-            Console.WriteLine("Depth first traversal: ");
 
+            var g = new WeightedDirectedGraph<int>();
+
+            var one = g.AddVertex(1);
+            var two = g.AddVertex(2);
+            var three = g.AddVertex(3);
+            var four = g.AddVertex(4);
+            var five = g.AddVertex(5);
+            var scarynode = g.AddVertex(10);
+
+            g.AddEdge(one, two, 1);
+			g.AddEdge(two, three, 62);
+            g.AddEdge(two, scarynode, 0);
+            g.AddEdge(scarynode, one, 1);
+			g.AddEdge(three, one, 1);
+			g.AddEdge(five, three, 1);
+			g.AddEdge(five, two, 1);
+			g.AddEdge(four, two, 1);
+            g.AddEdge(three, five, 1);
+            g.AddEdge(five, four, 1);
+            Console.WriteLine(g.DepthFirstTraversal(one, 4).val);
+            		
         }
     }
 }

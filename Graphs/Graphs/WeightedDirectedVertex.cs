@@ -17,7 +17,6 @@ namespace Graphs
                 var data = list.Where(t => t.Age > 3);
                                                                   
                 //(string test, int bla) value1 = ("", 3);
-                //data.RemoveAt(data.FindIndex(x => x.firstVal == "what youre looking for"))
 
                 this.edges = new List<Tuple<WeightedDirectedVertex<T>, float>>();
 			}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Graphs
@@ -41,13 +42,12 @@ namespace Graphs
 
 		public void RemoveVertex(WeightedDirectedVertex<T> vertex)
 		{
-			foreach (WeightedDirectedVertex<T> possibleNeighbor in vertices)
-			{ //any better way to do this? Is there a List.Map? Can I use List.ConvertAll?
-                if (possibleNeighbor.edges.Find)
-				{
-					possibleNeighbor.neighbors.Remove(vertex);
-				}
+
+            foreach (WeightedDirectedVertex<T> vtx in vertices)
+			{
+                vtx.edges.Remove(vtx.edges.Find(t => t.Item1 == vertex));
 			}
+            
 			vertices.Remove(vertex);
 		}
 		public void RemoveVertex(int index)
@@ -55,23 +55,26 @@ namespace Graphs
 			RemoveVertex(vertices[index]);
 		}
 
-		public bool HasVertex(SimpleVertex<T> vertex) => vertices.Contains(vertex);
+        public bool HasVertex(WeightedDirectedVertex<T> vertex) => vertices.Contains(vertex);
 
-		List<SimpleVertex<T>> visited;
-		SimpleVertex<T> item;
-		public SimpleVertex<T> DepthFirstTraversal(SimpleVertex<T> root, T searchVal)
+        List<WeightedDirectedVertex<T>> visited;
+        WeightedDirectedVertex<T> item;
+        public WeightedDirectedVertex<T> DepthFirstTraversal(WeightedDirectedVertex<T> root, T searchVal)
 		{
 			item = null;
-			visited = new List<SimpleVertex<T>>();
+            visited = new List<WeightedDirectedVertex<T>>();
 			DepthFirstTraversalHelper(root, searchVal);
 			return item;
 		}
 
-		void DepthFirstTraversalHelper(SimpleVertex<T> thisNode, T searchVal)
+        void DepthFirstTraversalHelper(WeightedDirectedVertex<T> thisNode, T searchVal)
 		{
 			if (item != null) return;
-			foreach (SimpleVertex<T> n in thisNode.neighbors)
+
+            thisNode.edges.Sort((x, y) => x.Item2.CompareTo(y.Item2));
+            foreach (var t in thisNode.edges)
 			{
+                var n = t.Item1;
 				if (visited.Contains(n)) continue;
 				if (n.val.CompareTo(searchVal) == 0)
 				{
@@ -90,7 +93,7 @@ namespace Graphs
 
 		public SimpleVertex<T> BreadthFirstTraversal(SimpleVertex<T> root, T searchVal)
 		{
-			visited = new List<SimpleVertex<T>>();
+			// = new List<SimpleVertex<T>>();
 			q = new Queue<SimpleVertex<T>>();
 
 			q.Enqueue(root);
@@ -105,9 +108,9 @@ namespace Graphs
 				q.Dequeue();
 				foreach (var i in n.neighbors)
 				{
-					if (!visited.Contains(i)) q.Enqueue(i);
+					//if (!visited.Contains(i)) q.Enqueue(i);
 				}
-				visited.Add(n);
+				//visited.Add(n);
 
 			}
 
