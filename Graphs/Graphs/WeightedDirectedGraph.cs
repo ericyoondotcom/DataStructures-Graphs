@@ -89,12 +89,12 @@ namespace Graphs
 
 		}
 
-		Queue<WeightedDirectedVertex<T>> q;
+		
 
 		public WeightedDirectedVertex<T> BreadthFirstTraversal(WeightedDirectedVertex<T> root, T searchVal)
 		{
             visited = new List<WeightedDirectedVertex<T>>();
-			q = new Queue<WeightedDirectedVertex<T>>();
+			Queue<WeightedDirectedVertex<T>> q = new Queue<WeightedDirectedVertex<T>>();
 
 			q.Enqueue(root);
 			while (q.Count != 0)
@@ -119,5 +119,66 @@ namespace Graphs
 			Console.WriteLine("hi!");
 			return null;
 		}
+
+		public List<WeightedDirectedVertex<T>> DijkstraFind(WeightedDirectedVertex<T> root, T searchVal)
+		{
+            var vertexInfo = new Dictionary<WeightedDirectedVertex<T>, Tuple<WeightedDirectedVertex<T>, float>>();
+			var searched = new List<WeightedDirectedVertex<T>>();
+			var q = new Queue<WeightedDirectedVertex<T>>();
+            WeightedDirectedVertex<T> nodeToFind;
+
+			q.Enqueue(root);
+
+            vertexInfo.Add(root, new Tuple<WeightedDirectedVertex<T>, float>(null, 0));
+
+			while (q.Count != 0)
+			{
+
+				var n = q.Peek();
+				
+				q.Dequeue();
+
+				n.edges.Sort((x, y) => x.Item2.CompareTo(y.Item2));
+				foreach (var i in n.edges)
+				{
+                    if (!searched.Contains(i.Item1))
+                    {
+                        q.Enqueue(i.Item1);
+                        if (vertexInfo.ContainsKey(i.Item1))
+                        {
+                            if(vertexInfo[i.Item1].Item2 > vertexInfo[n].Item2 + i.Item2)
+							vertexInfo[i.Item1] = new Tuple<WeightedDirectedVertex<T>, float>(n, vertexInfo[n].Item2 + i.Item2);
+                        }
+                        else
+                        {
+                            vertexInfo.Add(i.Item1, new Tuple<WeightedDirectedVertex<T>, float>(n, vertexInfo[n].Item2 + i.Item2));
+                            if (i.Item1.val = searchVal)
+                                nodeToFind = i.Item1;
+                        }
+                    }
+				}
+				searched.Add(n);
+
+                if (q.Count == 0)
+				{
+                    var path = new List<WeightedDirectedVertex<T>>();
+                    while(true){
+                        var dictEntry = vertexInfo[path[path.Count - 1]];
+                        if(dictEntry.Item2 == 0){
+                            return path;
+                        }else{
+                            path.Add(dictEntry.Item1);
+                        }
+                    }
+				}
+
+
+
+            }
+
+			Console.WriteLine("hi!");
+			return null;
+		}
+
 	}
 }
