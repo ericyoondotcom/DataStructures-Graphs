@@ -155,6 +155,7 @@ namespace Graphs
             var four = g.AddVertex(4);
             var five = g.AddVertex(5);
             var scarynode = g.AddVertex(10);
+            var unreachable = g.AddVertex(256);
 
             g.AddEdge(one, two, 1);
 			g.AddEdge(two, three, 62);
@@ -166,7 +167,7 @@ namespace Graphs
 			g.AddEdge(four, two, 1);
             g.AddEdge(three, five, 1);
             g.AddEdge(five, four, 1);
-            Console.WriteLine(g.DepthFirstTraversal(one, 4).val);
+            Console.WriteLine(g.BreadthFirstTraversal(one, 10).val);
             		
         }
     }

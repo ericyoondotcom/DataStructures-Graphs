@@ -89,12 +89,12 @@ namespace Graphs
 
 		}
 
-		Queue<SimpleVertex<T>> q;
+		Queue<WeightedDirectedVertex<T>> q;
 
-		public SimpleVertex<T> BreadthFirstTraversal(SimpleVertex<T> root, T searchVal)
+		public WeightedDirectedVertex<T> BreadthFirstTraversal(WeightedDirectedVertex<T> root, T searchVal)
 		{
-			// = new List<SimpleVertex<T>>();
-			q = new Queue<SimpleVertex<T>>();
+            visited = new List<WeightedDirectedVertex<T>>();
+			q = new Queue<WeightedDirectedVertex<T>>();
 
 			q.Enqueue(root);
 			while (q.Count != 0)
@@ -106,11 +106,13 @@ namespace Graphs
 					return n;
 				}
 				q.Dequeue();
-				foreach (var i in n.neighbors)
+
+                n.edges.Sort((x, y) => x.Item2.CompareTo(y.Item2));
+                foreach (var i in n.edges)
 				{
-					//if (!visited.Contains(i)) q.Enqueue(i);
+                    if (!visited.Contains(i.Item1)) q.Enqueue(i.Item1);
 				}
-				//visited.Add(n);
+				visited.Add(n);
 
 			}
 
