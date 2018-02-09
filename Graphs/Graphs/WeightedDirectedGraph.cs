@@ -152,7 +152,7 @@ namespace Graphs
                         else
                         {
                             vertexInfo.Add(i.Item1, new Tuple<WeightedDirectedVertex<T>, float>(n, vertexInfo[n].Item2 + i.Item2));
-                            if (i.Item1.val = searchVal)
+                            if (i.Item1.val.CompareTo(searchVal) == 0)
                                 nodeToFind = i.Item1;
                         }
                     }
