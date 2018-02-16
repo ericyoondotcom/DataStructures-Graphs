@@ -16,7 +16,7 @@ namespace Graphs
                 List<(string Name, int Age)> list = new List<(string, int)>();
                 var data = list.Where(t => t.Age > 3);
                                                                   
-                //(string test, int bla) value1 = ("", 3);
+                 //(string test, int bla) value1 = ("", 3);
 
                 this.edges = new List<Tuple<WeightedDirectedVertex<T>, float>>();
 			}

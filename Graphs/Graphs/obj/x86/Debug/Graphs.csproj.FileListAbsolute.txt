@@ -5,3 +5,4 @@
 /Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/obj/x86/Debug/Graphs.pdb
 /Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/bin/Debug/System.ValueTuple.dll
 /Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/bin/Debug/System.ValueTuple.xml
+/Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/obj/x86/Debug/Graphs.csprojResolveAssemblyReference.cache

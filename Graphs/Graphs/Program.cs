@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BasicVector;
 
 namespace Graphs
 {
@@ -167,7 +168,12 @@ namespace Graphs
 			g.AddEdge(four, two, 1);
             g.AddEdge(three, five, 1);
             g.AddEdge(five, four, 1);
-            Console.WriteLine(g.BreadthFirstTraversal(one, 10).val);
+
+            var pos = new Dictionary<WeightedDirectedVertex<int>, Vector>();
+            Random randy = new Random();
+            pos.Add(one, new Vector(randy.Next(1, 100), randy.Next(1, 100)));
+
+            Console.WriteLine(g.AStarFind(one, 10).val);
             		
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using BasicVector;
+using System.Linq;
 
 namespace Graphs
 {
@@ -125,19 +126,21 @@ namespace Graphs
 		{
             var vertexInfo = new Dictionary<WeightedDirectedVertex<T>, Tuple<WeightedDirectedVertex<T>, float>>();
 			var searched = new List<WeightedDirectedVertex<T>>();
-			var q = new Queue<WeightedDirectedVertex<T>>();
+
+			var q = new List<WeightedDirectedVertex<T>>();
             WeightedDirectedVertex<T> nodeToFind;
 
-			q.Enqueue(root);
+            q.Add(root);
 
             vertexInfo.Add(root, new Tuple<WeightedDirectedVertex<T>, float>(null, 0));
 
 			while (q.Count != 0)
 			{
                 //sort q such that the vertex with the smallest cumulative cost is first
-				var n = q.Peek();
+                q.Sort((x, y) => vertexInfo[x].Item2.CompareTo(vertexInfo[y].Item2));
+                var n = q[0];
 				
-				q.Dequeue();
+                q.RemoveAt(0);
 
 				n.edges.Sort((x, y) => x.Item2.CompareTo(y.Item2));
 				foreach (var i in n.edges)
@@ -145,7 +148,7 @@ namespace Graphs
                     //Item 1 here is the Vertex which represents neighbor
                     if (!searched.Contains(i.Item1))
                     {
-                        q.Enqueue(i.Item1);
+                        q.Add(i.Item1);
                         if (vertexInfo.ContainsKey(i.Item1))
                         {
                             if(vertexInfo[i.Item1].Item2 > vertexInfo[n].Item2 + i.Item2)
@@ -181,43 +184,47 @@ namespace Graphs
 			Console.WriteLine("hi!");
 			return null;
 		}
-        public List<WeightedDirectedVertex<T>> AStarFind(WeightedDirectedVertex<T> root, WeightedDirectedVertex<T> endpoint, T searchVal)
+        public List<WeightedDirectedVertex<T>> AStarFind(WeightedDirectedVertex<T> root, WeightedDirectedVertex<T> endpoint, Dictionary<WeightedDirectedVertex<T>, Vector> positions)
 		{
 			var vertexInfo = new Dictionary<WeightedDirectedVertex<T>, Tuple<WeightedDirectedVertex<T>, float, float>>();
 			var searched = new List<WeightedDirectedVertex<T>>();
-			var q = new Queue<WeightedDirectedVertex<T>>();
+			var q = new List<WeightedDirectedVertex<T>>();
 			WeightedDirectedVertex<T> nodeToFind;
 
-			q.Enqueue(root);
+            q.Add(root);
 
-            vertexInfo.Add(root, new Tuple<WeightedDirectedVertex<T>, float, float>(null, 0, ManhattanHeuristic(root, endpoint)));
+            vertexInfo.Add(root, new Tuple<WeightedDirectedVertex<T>, float, float>(null, 0, ManhattanHeuristic(positions[root], positions[endpoint])));
 
 			while (q.Count != 0)
 			{
-				//sort q such that the vertex with the smallest cumulative cost is first
-				var n = q.Peek();
 
-				q.Dequeue();
+				//sort q such that the vertex with the smallest cumulative cost is first
+                q.Sort((x, y) => (vertexInfo[x].Item3 + vertexInfo[x].Item2).CompareTo(vertexInfo[y].Item3 + vertexInfo[y].Item2));
+
+
+				var n = q[0];
+
+                q.RemoveAt(0);
 
 				n.edges.Sort((x, y) => x.Item2.CompareTo(y.Item2));
 				foreach (var i in n.edges)
 				{
-					//Item 1 here is the Vertex which represents neighbor
-					if (!searched.Contains(i.Item1))
-					{
-						q.Enqueue(i.Item1);
+                    //Item 1 here is the Vertex which represents neighbor
+                    if (!searched.Contains(i.Item1)) continue;
+				
+                        q.Add(i.Item1);
 						if (vertexInfo.ContainsKey(i.Item1))
 						{
 							if (vertexInfo[i.Item1].Item2 > vertexInfo[n].Item2 + i.Item2)
-								vertexInfo[i.Item1] = new Tuple<WeightedDirectedVertex<T>, float>(n, vertexInfo[n].Item2 + i.Item2);
+                                vertexInfo[i.Item1] = new Tuple<WeightedDirectedVertex<T>, float, float>(n, vertexInfo[n].Item2 + i.Item2, vertexInfo[i.Item1].Item3);
 						}
 						else
 						{
-							vertexInfo.Add(i.Item1, new Tuple<WeightedDirectedVertex<T>, float>(n, vertexInfo[n].Item2 + i.Item2));
-							if (i.Item1.val.CompareTo(searchVal) == 0)
+                            vertexInfo.Add(i.Item1, new Tuple<WeightedDirectedVertex<T>, float, float>(n, vertexInfo[n].Item2 + i.Item2, ManhattanHeuristic(positions[n], positions[endpoint])));
+                            if (i.Item1 == endpoint)
 								nodeToFind = i.Item1;
 						}
-					}
+					
 				}
 				searched.Add(n);
 
@@ -247,7 +254,7 @@ namespace Graphs
 		}
        
         public float ManhattanHeuristic(Vector thisVertex, Vector end){
-            return 0;
+            return (float)(Math.Abs(thisVertex.X - end.X) + Math.Abs(thisVertex.Y - end.Y));
         }
 
 
