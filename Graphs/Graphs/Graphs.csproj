@@ -52,6 +52,7 @@
     <Compile Include="SimpleVertex.cs" />
     <Compile Include="WeightedDirectedGraph.cs" />
     <Compile Include="WeightedDirectedVertex.cs" />
+    <Compile Include="Heap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

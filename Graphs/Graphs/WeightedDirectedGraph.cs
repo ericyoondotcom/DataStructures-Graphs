@@ -206,47 +206,47 @@ namespace Graphs
 
                 q.RemoveAt(0);
 
+                if(n == endpoint)
+                {
+                    break;
+                }
+
 				n.edges.Sort((x, y) => x.Item2.CompareTo(y.Item2));
 				foreach (var i in n.edges)
 				{
                     //Item 1 here is the Vertex which represents neighbor
                     if (!searched.Contains(i.Item1)) continue;
 				
-                        q.Add(i.Item1);
-						if (vertexInfo.ContainsKey(i.Item1))
-						{
-							if (vertexInfo[i.Item1].Item2 > vertexInfo[n].Item2 + i.Item2)
-                                vertexInfo[i.Item1] = new Tuple<WeightedDirectedVertex<T>, float, float>(n, vertexInfo[n].Item2 + i.Item2, vertexInfo[i.Item1].Item3);
-						}
-						else
-						{
-                            vertexInfo.Add(i.Item1, new Tuple<WeightedDirectedVertex<T>, float, float>(n, vertexInfo[n].Item2 + i.Item2, ManhattanHeuristic(positions[n], positions[endpoint])));
-                            if (i.Item1 == endpoint)
-								nodeToFind = i.Item1;
-						}
+                    q.Add(i.Item1);
+					if (vertexInfo.ContainsKey(i.Item1))
+					{
+						if (vertexInfo[i.Item1].Item2 > vertexInfo[n].Item2 + i.Item2)
+                            vertexInfo[i.Item1] = new Tuple<WeightedDirectedVertex<T>, float, float>(n, vertexInfo[n].Item2 + i.Item2, vertexInfo[i.Item1].Item3);
+					}
+					else
+					{
+                        vertexInfo.Add(i.Item1, new Tuple<WeightedDirectedVertex<T>, float, float>(n, vertexInfo[n].Item2 + i.Item2, ManhattanHeuristic(positions[i.Item1], positions[endpoint])));
+                        if (i.Item1 == endpoint)
+							nodeToFind = i.Item1;
+					}
 					
 				}
 				searched.Add(n);
 
-				if (q.Count == 0)
+			}
+
+			var path = new List<WeightedDirectedVertex<T>>();
+			while (true)
+			{
+				var dictEntry = vertexInfo[path[path.Count - 1]];
+				if (dictEntry.Item2 == 0)
 				{
-					var path = new List<WeightedDirectedVertex<T>>();
-					while (true)
-					{
-						var dictEntry = vertexInfo[path[path.Count - 1]];
-						if (dictEntry.Item2 == 0)
-						{
-							return path;
-						}
-						else
-						{
-							path.Add(dictEntry.Item1);
-						}
-					}
+					return path;
 				}
-
-
-
+				else
+				{
+					path.Add(dictEntry.Item1);
+				}
 			}
 
 			Console.WriteLine("hi!");

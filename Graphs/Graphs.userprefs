@@ -1,12 +1,13 @@
 ﻿<Properties StartupConfiguration="{36EB4DCF-C252-4E0D-B335-9354731E02C1}|Default">
   <MonoDevelop.Ide.ItemProperties.Graphs PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Graphs/WeightedDirectedVertex.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Graphs/Heap.cs">
     <Files>
       <File FileName="Graphs/SimpleGraph.cs" Line="78" Column="9" />
-      <File FileName="Graphs/WeightedDirectedGraph.cs" Line="193" Column="117" />
-      <File FileName="Graphs/Program.cs" Line="174" Column="2" NotebookId="1" />
+      <File FileName="Graphs/WeightedDirectedGraph.cs" Line="211" Column="27" />
+      <File FileName="Graphs/Heap.cs" Line="8" Column="20" />
+      <File FileName="Graphs/Program.cs" Line="174" Column="75" NotebookId="1" />
       <File FileName="Graphs/SimpleVertex.cs" Line="21" Column="1" NotebookId="1" />
-      <File FileName="Graphs/WeightedDirectedVertex.cs" Line="20" Column="17" NotebookId="1" />
+      <File FileName="Graphs/WeightedDirectedVertex.cs" Line="30" Column="2" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
