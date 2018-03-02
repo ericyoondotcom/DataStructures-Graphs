@@ -1,19 +1,36 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Graphs
 {
     public class Heap<T>
     {
+
+
         public T[] Data { get; private set; }
-        IComparer<T> sortfn;
+        Comparison<T> sortfn;
         public int Count { get; private set; }
-        public Heap(IComparer<T> sort, int capacity = 100)
+
+        public object Current => throw new NotImplementedException();
+
+        public Heap(Comparison<T> sort, int capacity = 100)
         {
             Data = new T[capacity];
             sortfn = sort;
             Count = 0;
         }
+
+        public override string ToString()
+        {
+            string text = "";
+            foreach(T t in Data){
+                text += t + ", ";
+            }
+            return text;
+
+        }
+
         public T Pop(){
             T removed = Data[0];
             int pos = 0;
@@ -29,14 +46,14 @@ namespace Graphs
 
                 if (right >= Count && left >= Count) break;
 
-                if(right >= Count || sortfn.Compare(Data[left], Data[right]) < 0){
+                if(right >= Count ||  sortfn(Data[left], Data[right]) < 0){
                     child = left;
                 }else{
                     child = right;
                 }
 
 
-                if (sortfn.Compare(Data[child],Data[pos]) > 0)
+                if (sortfn(Data[child],Data[pos]) > 0)
 				{
 					break;
 				}
@@ -50,12 +67,17 @@ namespace Graphs
             return removed;
         }
         public void Push(T newVal){
-            int pos = Data.Length;
+            if(Count == 0){
+                Data[Count] = newVal;
+                Count++;
+                return;
+            }
+            int pos = Count;
             Data[pos] = newVal;
             while(true){
                 int parent = GetParent(pos);
 
-                if (true /*compare FN*/ || pos == 0){
+                if (sortfn(Data[parent], Data[pos]) < 0 || pos == 0){
                     break;
                 }
 
@@ -63,12 +85,25 @@ namespace Graphs
                 Data[parent] = Data[pos];
                 Data[pos] = swap;
                 pos = parent;
+
             }
+            Count++;
         }
+
+        public T Peek() => Data[0];
 
         public int GetParent(int index) => (index - 1) / 2;
 		public int GetLeft(int index) => (index * 2) + 1;
         public int GetRight(int index) => (index * 2) + 2;
 
-	}
+        public bool MoveNext()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Reset()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

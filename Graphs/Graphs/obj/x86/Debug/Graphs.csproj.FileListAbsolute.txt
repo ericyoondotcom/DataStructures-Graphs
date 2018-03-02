@@ -6,3 +6,8 @@
 /Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/bin/Debug/System.ValueTuple.dll
 /Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/bin/Debug/System.ValueTuple.xml
 /Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/obj/x86/Debug/Graphs.csprojResolveAssemblyReference.cache
+/Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/bin/Debug/nunit.framework.dll
+/Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/bin/Debug/System.Numerics.Vectors.dll
+/Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/bin/Debug/Vector2D.dll
+/Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/bin/Debug/System.Numerics.Vectors.xml
+/Users/yooniverse/Documents/DataStructures-Graphs/Graphs/Graphs/bin/Debug/nunit.framework.xml

@@ -148,7 +148,7 @@ namespace Graphs
             #endregion
             */
 
-            var g = new WeightedDirectedGraph<int>();
+            /*var g = new WeightedDirectedGraph<int>();
 
             var one = g.AddVertex(1);
             var two = g.AddVertex(2);
@@ -174,7 +174,24 @@ namespace Graphs
             pos.Add(one, new Vector(randy.Next(1, 100), randy.Next(1, 100)));
 
             Console.WriteLine(g.AStarFind(one, 10).val);
-            		
+            */
+
+            Heap<int> heap = new Heap<int>((int x, int y) => x - y);
+
+            heap.Push(1);
+            heap.Push(2);
+            heap.Push(3);
+            heap.Push(4);
+            heap.Push(5);
+            heap.Push(-1);
+            heap.Push(7);
+            heap.Push(-2);
+            heap.Push(3);
+            heap.Push(-6);
+            heap.Pop();
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine(heap);
+
         }
     }
 }
