@@ -8,8 +8,9 @@ namespace Graphs
     {
 
 
+
         public T[] Data { get; private set; }
-        Comparison<T> sortfn;
+        public Comparison<T> sortfn { get; private set; }
         public int Count { get; private set; }
 
         public object Current => throw new NotImplementedException();
@@ -19,6 +20,19 @@ namespace Graphs
             Data = new T[capacity];
             sortfn = sort;
             Count = 0;
+        }
+
+        public static T[] HeapSort(T[] data, Heap<T> heap){
+            T[] newData = new T[data.Length];
+            foreach(T t in data){
+                heap.Push(t);
+            }
+            int pos = 0;
+            while(heap.Count > 0){
+                newData[pos] = heap.Pop();
+                pos++;
+            }
+            return newData;
         }
 
         public override string ToString()

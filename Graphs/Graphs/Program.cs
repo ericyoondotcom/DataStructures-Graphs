@@ -191,6 +191,13 @@ namespace Graphs
             heap.Pop();
             Console.BackgroundColor = ConsoleColor.Red;
             Console.WriteLine(heap);
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            int[] arr = new int[10] { 4, 8, 12, 4, 8, 2, 6, 4, 5, 8 };
+            int[] result = Heap<int>.HeapSort(arr, new Heap<int>((int x, int y) => x - y));
+
+            foreach(int i in result){
+                Console.Write(i.ToString() + ", ");
+            }
 
         }
     }
